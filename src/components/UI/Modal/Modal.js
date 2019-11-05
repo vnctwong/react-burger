@@ -4,8 +4,8 @@ import Aux from '../../../hoc/Aux';
 import Backdrop from '../Backdrop/Backdrop';
 
 const modal = (props) => (
-  <aux>
-    <Backdrop show={props.show} />
+  <Aux>
+    <Backdrop show={props.show} clicked={props.modalClosed} />
     <div
       className={classes.Modal}
       style={{
@@ -16,7 +16,7 @@ const modal = (props) => (
       {props.children}
 
     </div>
-  </aux>
+  </Aux>
 );
 
 export default modal;
