@@ -48,17 +48,17 @@ class ContactData extends Component {
   };
 
   checkValidity(value, rules) {
-    let isValid = false;
+    let isValid = [];
     if (rules.required) {
-      isValid = value.trim() !== '';
+      isValid.push(value.trim() !== '');
     }
     if (rules.minLength) {
-      isValid = value.length >= rules.minLength;
+      isValid.push(value.length >= rules.minLength);
     }
     if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength;
+      isValid.push(value.length <= rules.maxLength);
     }
-    return isValid;
+    return isValid.indexOf(false) === -1 ? true : false;
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -71,6 +71,7 @@ class ContactData extends Component {
     updatedFormElement.value = event.target.value;
     updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
     updatedOrderForm[inputIdentifier] = updatedFormElement;
+    console.log(updatedFormElement);
     this.setState({ orderForm: updatedOrderForm });
   }
 
