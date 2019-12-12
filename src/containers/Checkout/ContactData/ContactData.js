@@ -9,16 +9,20 @@ import Input from '../../../components/UI/Input/Input';
 class ContactData extends Component {
   state = {
     orderForm: {
-      name: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Your Name' }, value: '', validation: { required: true }, valid: false },
-      street: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Street' }, value: '', validation: { required: true }, valid: false },
-      zipCode: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'ZIP Code' }, value: '', validation: { required: true, minLength: 5, maxLength: 5 }, valid: false },
-      country: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Country' }, value: '', validation: { required: true }, valid: false },
-      email: { elementType: 'input', elementConfig: { type: 'email', placeholder: 'Your Email' }, value: '', validation: { required: true }, valid: false },
+      name: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Your Name' }, value: '', validation: { required: true }, valid: false, touched: false },
+      street: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Street' }, value: '', validation: { required: true }, valid: false, touched: false },
+      zipCode: {
+        elementType: 'input', elementConfig: { type: 'text', placeholder: 'ZIP Code' }, value: '', validation: {
+          required: true, minLength: 5, maxLength: 5
+        }, valid: false, touched: false
+      },
+      country: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Country' }, value: '', validation: { required: true }, valid: false, touched: false },
+      email: { elementType: 'input', elementConfig: { type: 'email', placeholder: 'Your Email' }, value: '', validation: { required: true }, valid: false, touched: false },
       deliveryMethod: {
         elementType: 'select', elementConfig: {
           options: [{ value: 'fastest', displayValue: 'Fastest' }, { value: 'cheapest', displayValue: 'Cheapest' }]
         },
-        value: '', valid: false
+        value: ''
       }
     },
     loading: false
@@ -69,7 +73,8 @@ class ContactData extends Component {
       ...updatedOrderForm[inputIdentifier]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
+    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
     console.log(updatedFormElement);
     this.setState({ orderForm: updatedOrderForm });
@@ -92,7 +97,7 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
-            invalid={!formElement.config.valid}
+            invalid={formElement.config.touched && !formElement.config.valid}
             shouldValidate={formElement.config.validation}
             changed={(event) => this.inputChangedHandler(event, formElement.id)} />
         ))}
