@@ -10,7 +10,7 @@ class ContactData extends Component {
   state = {
     orderForm: {
       name: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Name' }, value: '', validation: { required: true }, valid: false, touched: false },
-      street: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Street' }, value: '', validation: { required: true }, valid: false, touched: false },
+      street: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Address' }, value: '', validation: { required: true }, valid: false, touched: false },
       zipCode: {
         elementType: 'input', elementConfig: { type: 'text', placeholder: 'ZIP Code' }, value: '', validation: {
           required: true, minLength: 5, maxLength: 5
@@ -22,7 +22,7 @@ class ContactData extends Component {
         elementType: 'select', elementConfig: {
           options: [{ value: 'fastest', displayValue: 'Fastest' }, { value: 'cheapest', displayValue: 'Cheapest' }]
         },
-        value: ''
+        value: '', validation: {}, valid: true
       }
     },
     formIsValid: false,
@@ -109,7 +109,7 @@ class ContactData extends Component {
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
-        <Button btnType='Success'>ORDER</Button>
+        <Button btnType='Success' disabled={!this.state.formIsValid} >ORDER</Button>
       </form>);
     if (this.state.loading) {
       form = <Spinner />
