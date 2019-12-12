@@ -34,10 +34,16 @@ const input = (props) => {
         className={inputClasses.join(' ')} {...props.elementConfig} value={props.value} />;
   };
 
+  let validationError = null;
+  if (props.invalid && props.shouldValidate) {
+    validationError = <p>Please enter your {props.elementConfig.placeholder} </p>
+  }
+
   return (
     <div className={classes.Input} >
       <label className={classes.Label} > {props.label} </label>
       {inputElement}
+      {validationError}
     </div>
   );
 }

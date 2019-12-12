@@ -9,7 +9,7 @@ import Input from '../../../components/UI/Input/Input';
 class ContactData extends Component {
   state = {
     orderForm: {
-      name: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Your Name' }, value: '', validation: { required: true }, valid: false, touched: false },
+      name: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Name' }, value: '', validation: { required: true }, valid: false, touched: false },
       street: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Street' }, value: '', validation: { required: true }, valid: false, touched: false },
       zipCode: {
         elementType: 'input', elementConfig: { type: 'text', placeholder: 'ZIP Code' }, value: '', validation: {
@@ -17,7 +17,7 @@ class ContactData extends Component {
         }, valid: false, touched: false
       },
       country: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Country' }, value: '', validation: { required: true }, valid: false, touched: false },
-      email: { elementType: 'input', elementConfig: { type: 'email', placeholder: 'Your Email' }, value: '', validation: { required: true }, valid: false, touched: false },
+      email: { elementType: 'input', elementConfig: { type: 'email', placeholder: 'Email' }, value: '', validation: { required: true }, valid: false, touched: false },
       deliveryMethod: {
         elementType: 'select', elementConfig: {
           options: [{ value: 'fastest', displayValue: 'Fastest' }, { value: 'cheapest', displayValue: 'Cheapest' }]
@@ -99,7 +99,8 @@ class ContactData extends Component {
             value={formElement.config.value}
             invalid={formElement.config.touched && !formElement.config.valid}
             shouldValidate={formElement.config.validation}
-            changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+            changed={(event) => this.inputChangedHandler(event, formElement.id)}
+          />
         ))}
         <Button btnType='Success'>ORDER</Button>
       </form>);
