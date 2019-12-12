@@ -22,7 +22,7 @@ class ContactData extends Component {
         elementType: 'select', elementConfig: {
           options: [{ value: 'fastest', displayValue: 'Fastest' }, { value: 'cheapest', displayValue: 'Cheapest' }]
         },
-        value: '', validation: {}, valid: true
+        value: 'fastest', validation: {}, valid: true
       }
     },
     formIsValid: false,
@@ -77,7 +77,7 @@ class ContactData extends Component {
     updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-    console.log(updatedFormElement);
+    // console.log(updatedFormElement);
 
     let formIsValid = true;
     for (let inputIdentifier in updatedOrderForm) {
