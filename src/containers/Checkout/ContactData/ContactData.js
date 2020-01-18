@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -13,7 +14,7 @@ class ContactData extends Component {
       street: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Address' }, value: '', validation: { required: true }, valid: false, touched: false },
       zipCode: {
         elementType: 'input', elementConfig: { type: 'text', placeholder: 'ZIP Code' }, value: '', validation: {
-          required: true, minLength: 5, maxLength: 5
+          required: true, minLength: 6, maxLength: 6
         }, valid: false, touched: false
       },
       country: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Country' }, value: '', validation: { required: true }, valid: false, touched: false },
@@ -37,7 +38,7 @@ class ContactData extends Component {
       formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
     }
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData
     };
@@ -123,4 +124,11 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice
+  }
+}
+
+export default connect(mapStateToProps)(ContactData);
