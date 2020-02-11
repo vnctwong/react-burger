@@ -30,17 +30,16 @@ class Checkout extends Component {
             component={ContactData} />
         </div>
     }
+
     return (
-
       { summary }
-
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients
+    ings: state.burgerBuilder.ingredients
   }
 };
 
