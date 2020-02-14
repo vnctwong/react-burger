@@ -15,7 +15,7 @@ class ContactData extends Component {
       name: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Name' }, value: '', validation: { required: true }, valid: false, touched: false },
       street: { elementType: 'input', elementConfig: { type: 'text', placeholder: 'Address' }, value: '', validation: { required: true }, valid: false, touched: false },
       zipCode: {
-        elementType: 'input', elementConfig: { type: 'text', placeholder: 'ZIP Code' }, value: '', validation: {
+        elementType: 'input', elementConfig: { type: 'text', placeholder: 'ZIP Code (6 digits)' }, value: '', validation: {
           required: true, minLength: 6, maxLength: 6
         }, valid: false, touched: false
       },

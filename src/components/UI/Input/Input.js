@@ -36,7 +36,7 @@ const input = (props) => {
 
   let validationError = null;
   if (props.invalid && props.shouldValidate) {
-    validationError = <p>Please enter your {props.elementConfig.placeholder.toLowerCase()} </p>
+    validationError = <p>Please enter a valid {props.elementConfig.placeholder.toLowerCase()} </p>
   }
 
   return (
