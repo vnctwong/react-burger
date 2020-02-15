@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import classes from './Auth.css';
 
 class Auth extends Component {
   state = {
     controls: {
       email: {
-        elementType: 'email', elementConfig: { type: 'text', placeholder: 'Email address' },
+        elementType: 'email',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Email address'
+        },
         value: '',
         validation: {
           required: true,
@@ -36,10 +41,10 @@ class Auth extends Component {
 
   render() {
     const formElementsArray = [];
-    for (let key in this.state.orderForm) {
+    for (let key in this.state.controls) {
       formElementsArray.push({
         id: key,
-        config: this.state.orderForm[key]
+        config: this.state.controls[key]
       });
     };
 
@@ -52,10 +57,10 @@ class Auth extends Component {
         invalid={formElement.config.touched && !formElement.config.valid}
         shouldValidate={formElement.config.validation}
         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-    ))
+    ));
 
     return (
-      <div>
+      <div className={classes.Auth}>
         <form>
           {form}
           <Button btnType='Success'>SUBMIT</Button>
