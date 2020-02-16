@@ -39,6 +39,33 @@ class Auth extends Component {
     }
   }
 
+  checkValidity(value, rules) {
+    let isValid = [];
+    if (rules.required) {
+      isValid.push(value.trim() !== '');
+    }
+    if (rules.minLength) {
+      isValid.push(value.length >= rules.minLength);
+    }
+    if (rules.maxLength) {
+      isValid.push(value.length <= rules.maxLength);
+    }
+    return isValid.indexOf(false) === -1 ? true : false;
+  }
+
+  inputChangedHandler = (event, controlName) => {
+    const updatedControls = {
+      ...this.state.controls,
+      [controlName]: {
+        ...this.state.controls[controlName],
+        value: event.target.value,
+        valid: this.checkValidity(event.target.value, this.state.controls[controlName].validation),
+        touched: true
+      }
+    }
+    this.setState({ controls: updatedControls });
+  }
+
   render() {
     const formElementsArray = [];
     for (let key in this.state.controls) {
@@ -54,8 +81,9 @@ class Auth extends Component {
         elementType={formElement.config.elementType}
         elementConfig={formElement.config.elementConfig}
         value={formElement.config.value}
-        invalid={formElement.config.touched && !formElement.config.valid}
+        invalid={!formElement.config.valid}
         shouldValidate={formElement.config.validation}
+        touched={formElement.config.touched}
         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
     ));
 
