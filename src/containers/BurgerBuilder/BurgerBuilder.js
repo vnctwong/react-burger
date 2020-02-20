@@ -23,7 +23,6 @@ class BurgerBuilder extends Component {
   }
 
   updatePurchaseState(ingredients) {
-
     const sum = Object.keys(ingredients)
       .map(igKey => {
         return ingredients[igKey];
@@ -39,7 +38,7 @@ class BurgerBuilder extends Component {
   }
 
   purchaseCancelHandler = () => {
-    this.setState({ purchasing: false })
+    this.setState({ purchasing: false });
   }
 
   purchaseContinueHandler = () => {
@@ -54,10 +53,9 @@ class BurgerBuilder extends Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0
     }
-
     let orderSummary = null;
+    let burger = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
 
-    let burger = this.props.error ? <p>Ingredients can't be loaded</p> : <Spinner />;
     if (this.props.ings) {
       burger = (
         <Aux>
@@ -80,9 +78,7 @@ class BurgerBuilder extends Component {
 
     return (
       <Aux>
-        <Modal
-          show={this.state.purchasing}
-          modalClosed={this.purchaseCancelHandler}>
+        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
           {orderSummary}
         </Modal>
         {burger}

@@ -15,12 +15,6 @@ export const removeIngredient = (name) => {
   };
 };
 
-export const fetchIngredientsFailed = () => {
-  return {
-    type: actionTypes.FETCH_INGREDIENTS_FAILED
-  };
-};
-
 export const setIngredients = (ingredients) => {
   return {
     type: actionTypes.SET_INGREDIENTS,
@@ -28,11 +22,17 @@ export const setIngredients = (ingredients) => {
   };
 };
 
+export const fetchIngredientsFailed = () => {
+  return {
+    type: actionTypes.FETCH_INGREDIENTS_FAILED
+  };
+};
+
 export const initIngredients = () => {
   return dispatch => {
     axios.get('https://burger-builder-50968.firebaseio.com/ingredients.json')
-      .then(res => {
-        dispatch(setIngredients(res.data))
+      .then(response => {
+        dispatch(setIngredients(response.data));
       })
       .catch(error => {
         dispatch(fetchIngredientsFailed());

@@ -8,11 +8,11 @@ import * as actions from '../../store/actions/index';
 
 class Checkout extends Component {
 
-  checkoutCancelled = () => {
+  checkoutCancelledHandler = () => {
     this.props.history.goBack();
   }
 
-  checkoutContinued = () => {
+  checkoutContinuedHandler = () => {
     this.props.history.replace('/checkout/contact-data');
   }
 
@@ -25,16 +25,14 @@ class Checkout extends Component {
           {purchasedRedirect}
           <CheckoutSummary
             ingredients={this.props.ings}
-            checkoutCancelled={this.checkoutCancelled}
-            checkoutContinued={this.checkoutContinued} />
-
+            checkoutCancelled={this.checkoutCancelledHandler}
+            checkoutContinued={this.checkoutContinuedHandler} />
           <Route
             path={this.props.match.path + '/contact-data'}
             component={ContactData} />
         </div>
       );
     }
-
     return summary;
   }
 }

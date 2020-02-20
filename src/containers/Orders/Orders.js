@@ -19,9 +19,9 @@ class Orders extends Component {
         <Order
           key={order.id}
           ingredients={order.ingredients}
-          price={+order.price} />
+          price={order.price} />
       ))
-    };
+    }
     return (
       <div>
         {orders}
@@ -35,13 +35,13 @@ const mapStateToProps = state => {
     orders: state.order.orders,
     loading: state.order.loading,
     token: state.auth.token
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetchOrders: (token) => dispatch(actions.fetchOrders(token))
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios));

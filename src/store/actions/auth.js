@@ -31,10 +31,11 @@ export const logout = () => {
 export const checkAuthTimeout = (expirationTime) => {
   return dispatch => {
     setTimeout(
-      () => { dispatch(logout()) },
-      expirationTime * 1000
-    )
-  }
+      () => {
+        dispatch(logout());
+      },
+      expirationTime * 1000);
+  };
 };
 
 export const auth = (email, password, isSignup) => {
@@ -56,8 +57,7 @@ export const auth = (email, password, isSignup) => {
         dispatch(checkAuthTimeout(response.data.expiresIn));
       })
       .catch(err => {
-        console.log(err);
         dispatch(authFail(err.response.data.error));
-      })
+      });
   };
 };
