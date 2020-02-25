@@ -8,8 +8,13 @@ import Checkout from './containers/Checkout/Checkout';
 import Orders from './containers/Orders/Orders';
 import Auth from './containers/Auth/Auth';
 import Logout from './containers/Auth/Logout/Logout';
+import * as actions from './store/actions/index';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+  }
+
   render() {
     return (
       <div>
@@ -27,10 +32,10 @@ class App extends Component {
   }
 }
 
-mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoSignup: () => dispatch()
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
   };
 };
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);
