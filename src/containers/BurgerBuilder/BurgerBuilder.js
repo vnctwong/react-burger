@@ -18,7 +18,6 @@ class BurgerBuilder extends Component {
 
   // retrieves ingredients from firebase
   componentDidMount() {
-    console.log(this.props);
     this.props.onInitIngredients();
   }
 
@@ -62,8 +61,8 @@ class BurgerBuilder extends Component {
     let burger = this.props.error ? (
       <p>Ingredients can't be loaded!</p>
     ) : (
-      <Spinner />
-    );
+        <Spinner />
+      );
 
     if (this.props.ings) {
       burger = (
